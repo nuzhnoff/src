@@ -1,0 +1,25 @@
+;python -m pdpy11 C:\Users\Den\YandexDisk\home\src\pdp11\account1\addr0r1dec1.mac
+;Вывод на экран результата сложение r0 r1 в десятичном формате
+;ПРОГРАММА НЕ КОРЕКТНА ТЕСТ 762(8)(498.)-> 448
+;считаем число разрядов
+	MOV #762,R0  ;заносим в R0 число(NUMB) для конверктации
+	MOV #TEN,R5  ;-> R5 addr array MANTIS 10000. 1000. ..
+1:	CMP (R5)+,R0 ; сравнение нашего числа и 1 разряда по ходу(10000) и инремент к следующему разряду
+	BHI 1        ; if NUMB > MANTIS -> 1: 
+	MOV -(R5),R3 ;выравниевания массива мантисы 
+	BEQ 4        ;Z=0 -> 4:
+2:	MOV #47.,R4  ; 47. IS 57(OCT) (при инкременте будет 60(okt)->0) это коды символов
+3:	INC R4       ; 57OCT -> 60OCT(SYMBOL 0)
+	SUB R3,R0 	 ;NUMBER - MANTIS
+	BHIS 3		 ; C>=0 TO 3:
+	MOVB R4,(R1)+ ;?PRINT R4 ?(R1)+
+	EMT 16
+	ADD (R5)+,R0 ;ВОСТАНОВЛЕНИЕ NUMB
+	MOV (R5),R3
+	BNE 2 ; IF Z=0 TO 2:
+4:	ADD #48.,R0 ;СБРОС ПЕРЕБОРА КОДОВ СИМВОЛА
+	MOVB R0,(R1)+ ;PRINT R0
+	EMT 16
+	CLRB (R1)
+	RET	
+TEN:	.WORD 10000.,1000.,100.,10.,0

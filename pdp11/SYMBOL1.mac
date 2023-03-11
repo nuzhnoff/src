@@ -1,0 +1,15 @@
+;python -m pdpy11 C:\BK_v3.13_x64\Release_x64\Bin\SYMBOL1.mac
+;Вывод символов А-Z  на экран
+
+	MOVB #32, R1 ; to Z
+	MOVB #14, R0 ; RESET SCREEN
+	EMT 16       ; *
+	CLR R0
+	MOV #101, R0 ; 101 - A
+	EMT 16
+M1: INC R0
+	EMT 16
+	DEC R1
+	BNE M1
+	HALT
+	END
