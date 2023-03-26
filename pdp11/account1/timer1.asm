@@ -1,4 +1,4 @@
-;;python -m pdpy11 C:\Users\Den\YandexDisk\home\src\pdp11\account1\test5.mac
+ ;;python -m pdpy11 C:\Users\Den\YandexDisk\home\src\pdp11\account1\test5.mac
 ;PRGOGRAM  RND GENERATOR ARRAY
 ;1000DEC -> 1747OCT
 
